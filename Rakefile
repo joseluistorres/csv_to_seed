@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "csv_to_seed"
   gem.homepage = "http://github.com/joseluistorres/csv_to_seed"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Utility to get a CSV file into seed.rb}
+  gem.description = %Q{Utility to get a CSV file into seed.rb}
   gem.email = "jl@joseluistorres.me"
   gem.authors = ["JoseLuis Torres"]
   # dependencies defined in Gemfile
