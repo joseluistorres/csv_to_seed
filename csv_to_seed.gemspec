@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.date = "2014-05-14"
   s.description = "Utility to get a CSV file into seed.rb"
   s.email = "jl@joseluistorres.me"
+  s.executables = ["csv_to_seed"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -26,11 +27,14 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/csv_to_seed",
+    "csv_to_seed.gemspec",
+    "db/seeds.rb",
     "lib/csv_to_seed.rb",
+    "test.csv",
     "test/helper.rb",
     "test/test_csv_to_seed.rb"
   ]
-  s.executables   = ["csv_to_seed"]
   s.homepage = "http://github.com/joseluistorres/csv_to_seed"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.2.2"
