@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_csv_to_seed.rb"
   ]
+  s.executables   = ["csv_to_seed"]
   s.homepage = "http://github.com/joseluistorres/csv_to_seed"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.2.2"

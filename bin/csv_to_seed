@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'csv_to_seed'
+
+csv_to_seed = CSVToSeed.new({ :csv_path_to_file => ARGV[0], :name_of_array => ARGV[1] })
+csv_to_seed.write_seedrb_file
+

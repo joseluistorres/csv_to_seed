@@ -52,7 +52,7 @@ class CSVToSeed
   end
 
   def write_seedrb_file
-    File.write('db/seeds.rb', "\n\r#{@name_of_array} = #{csv_to_hash} \n\r #{set_string_to_create_loop}", File.size('db/seeds.rb'), mode: 'a')
+    File.write(Dir.pwd + '/db/seeds.rb', "\n\r#{@name_of_array} = #{csv_to_hash} \n\r #{set_string_to_create_loop}", File.size(Dir.pwd + '/db/seeds.rb'), mode: 'a')
     @file.close
   end
 end
