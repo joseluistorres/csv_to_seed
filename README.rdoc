@@ -1,9 +1,19 @@
 = csv_to_seed
 
-Description goes here.
+This gem is a basic tool for those who get annoyed by parsing CSVs file to import them to their DBs,
+instead this script just read the CSV file and write an array based on the file to seed.rb for Rails Apps.
+
+```
+  $ csv_to_seed 'path_to_CSV_file' 'name_of_the_array'
+```
+
+@TODO
+-  Add testing to the class
+-  Unhardcode the structure to insert
+-  Update the README
 
 == Contributing to csv_to_seed
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -16,4 +26,3 @@ Description goes here.
 
 Copyright (c) 2014 JoseLuis Torres. See LICENSE.txt for
 further details.
-
