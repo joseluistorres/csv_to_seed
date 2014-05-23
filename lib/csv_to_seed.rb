@@ -1,16 +1,21 @@
 require 'csv'
 
 class CSVToSeed
-  attr_accessor :file, :headers
+  attr_accessor :file, :headers, :name_of_array
 
   def initialize(args)
     @csv_path_to_file = args[:csv_path_to_file]
     @name_of_array = args[:name_of_array]
+    validate_name_of_array(@name_of_array)
   end
 
   def get_csv_body
-    @file = File.open(@csv_path_to_file, "rb")
-    @file.read
+    begin
+      @file = File.open(@csv_path_to_file, "rb")
+      @file.read
+    rescue
+      raise 'Invalid file path'
+    end
   end
 
   def csv_object
@@ -37,18 +42,23 @@ class CSVToSeed
       .gsub(/\}\,/, "\s},")
   end
 
-  def set_string_to_create_loop
-  <<-TEXT
-  #{@name_of_array}.each do |attributes|
-    Static::SupportPracticeLu.find_or_initialize_by_name(attributes[:name]).tap do |support_practice|
-      support_practice.name = attributes[:name]
-      support_practice.support_practice_type_id = attributes[:support_practice_type_id]
-      support_practice.number = attributes[:number]
-      support_practice.width = attributes[:width]
-      support_practice.save!
-    end
+  def validate_name_of_array(value)
+    raise 'Must be a valid variable name' if (value =~ /^[a-z_][a-zA-Z_0-9]*$/).nil?
   end
-  TEXT
+
+  def set_string_to_create_loop
+
+    <<-TEXT
+    #{@name_of_array}.each do |attributes|
+      Static::SupportPracticeLu.find_or_initialize_by_name(attributes[:name]).tap do |support_practice|
+        support_practice.name = attributes[:name]
+        support_practice.support_practice_type_id = attributes[:support_practice_type_id]
+        support_practice.number = attributes[:number]
+        support_practice.width = attributes[:width]
+        support_practice.save!
+      end
+    end
+    TEXT
   end
 
   def write_seedrb_file
