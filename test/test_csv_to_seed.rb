@@ -9,7 +9,7 @@ describe CSVToSeed do
   end
 
   it "should read a CSV file" do
-    @csv_to_seed.get_csv_body.must_match /name,support_practice_type_id,number,width/
+    @csv_to_seed.get_csv_body.must_match /name,path,support_practice_type_id,number,width/
   end
 
   it "should show an error when the CSV file is missing" do
@@ -33,5 +33,17 @@ describe CSVToSeed do
   it "should raise an error when a name of array is invalid" do
     error =-> { CSVToSeed.new({ :csv_path_to_file => 'test.csv', :name_of_array => '123my_test' }) }.must_raise RuntimeError
     error.message.must_match /Must be a valid variable name/
+  end
+
+  it "should read the first row as headers" do
+    # name,support_practice_type_id,number,width
+    @csv_to_seed.csv_to_hash
+    @csv_to_seed.headers.must_be_instance_of Array
+    @csv_to_seed.headers.must_include :support_practice_type_id
+  end
+
+  it "should create a string for the loop with headers" do
+    @csv_to_seed.csv_to_hash
+    @csv_to_seed.set_string_to_create_loop.must_match /\.path\s\=\sattributes\[\:path\]/
   end
 end

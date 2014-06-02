@@ -47,14 +47,20 @@ class CSVToSeed
   end
 
   def set_string_to_create_loop
-
+    if @headers.empty?
+      csv_to_hash
+    end
+    inside_vars = ''
+    @headers.each do |header|
+      inside_vars = inside_vars + 
+    <<-TEXT
+        support_practice.#{header.to_s} = attributes[:#{header.to_s}]
+    TEXT
+    end
     <<-TEXT
     #{@name_of_array}.each do |attributes|
       Static::SupportPracticeLu.find_or_initialize_by_name(attributes[:name]).tap do |support_practice|
-        support_practice.name = attributes[:name]
-        support_practice.support_practice_type_id = attributes[:support_practice_type_id]
-        support_practice.number = attributes[:number]
-        support_practice.width = attributes[:width]
+        #{inside_vars}
         support_practice.save!
       end
     end
